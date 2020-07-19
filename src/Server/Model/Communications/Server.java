@@ -20,6 +20,13 @@ public class Server extends Thread{
     public Server() {
         AllUsers = new ArrayList<>();
         AllGames = new ArrayList<>();
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public void start_socket(){
         try {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
