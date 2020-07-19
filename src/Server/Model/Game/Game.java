@@ -11,16 +11,6 @@ public class Game extends Thread{
     private User opponent1;
     private User opponent2;
     private Board board;
-    private DataInputStream inputStream;
-    private DataOutputStream outputStream;
-
-    public void setInputStream(DataInputStream inputStream) {
-        this.inputStream = inputStream;
-    }
-
-    public void setOutputStream(DataOutputStream outputStream) {
-        this.outputStream = outputStream;
-    }
 
     public void setOpponent1(User opponent1) {
         this.opponent1 = opponent1;
@@ -42,22 +32,22 @@ public class Game extends Thread{
         cell[][] cells=board.getBoard();
         while(!end){
             try {
-                int x_start=inputStream.readInt();
-                int y_start=inputStream.readInt();
-                int x_end=inputStream.readInt();
-                int y_end=inputStream.readInt();
+                int x_start=current_user.clientHandler.inputStream.readInt();
+                int y_start=current_user.clientHandler.inputStream.readInt();
+                int x_end=current_user.clientHandler.inputStream.readInt();
+                int y_end=current_user.clientHandler.inputStream.readInt();
                 if(cells[y_end][x_end].piece!=null){
                     if(cells[y_end][x_end].piece.getColor()!=cells[y_start][x_start].piece.getColor()){
                         current_user.score+=cells[y_end][x_end].piece.score;
                     }
                     else{
-                        outputStream.writeUTF("no");
+                        current_user.clientHandler.outputStream.writeUTF("no");
                         continue;
                     }
                 }
                 cells[y_start][x_start].piece = null;
                 cells[y_end][x_end].piece = cells[y_start][x_start].piece;
-                outputStream.writeUTF("next");
+                current_user.clientHandler.outputStream.writeUTF("next");
             } catch (IOException e) {
                 e.printStackTrace();
             }
