@@ -77,6 +77,9 @@ public class ClientHandler implements Runnable {
                             }
                             game.start();
                         }
+                        else if(action.equals("score")){
+                            outputStream.writeInt(logged_in.score);
+                        }
                         else if(action.equals("board")){
                             cell[][] cells=((Game)game).getBoard().getBoard();
                             for (int i = 0; i < 8; i++) {

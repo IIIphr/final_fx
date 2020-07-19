@@ -95,4 +95,9 @@ public class Client {
         }
         return out;
     }
+
+    public int get_score() throws IOException {
+        outputStream.writeUTF("score");
+        return inputStream.readInt();
+    }
 }

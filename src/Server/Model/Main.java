@@ -13,5 +13,6 @@ public class Main {
         ((Server)server).setPort(port);
         ((Server)server).start_socket();
         server.start();
+        scanner.close();
     }
 }
