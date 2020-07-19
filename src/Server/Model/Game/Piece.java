@@ -1,6 +1,6 @@
 package Server.Model.Game;
 
-enum Color {White, Black}
+
 
 public abstract class Piece {
     private final Color color;

@@ -78,4 +78,21 @@ public class Client {
         }
         return true;
     }
+
+    public void game_create() throws IOException {
+        outputStream.writeUTF("game");
+    }
+
+    public String get_board() throws IOException {
+        outputStream.writeUTF("board");
+        String out="";
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                int temp=inputStream.readInt();
+                out+=temp;
+                out+=" ";
+            }
+        }
+        return out;
+    }
 }

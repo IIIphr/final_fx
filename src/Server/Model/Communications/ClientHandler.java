@@ -1,5 +1,6 @@
 package Server.Model.Communications;
 
+import Server.Model.Game.*;
 import Server.Model.DB.DataBase;
 import Server.Model.User.User;
 
@@ -75,6 +76,64 @@ public class ClientHandler implements Runnable {
                             while (!server.create_game(logged_in)) {
                             }
                             game.start();
+                        }
+                        else if(action.equals("board")){
+                            cell[][] cells=((Game)game).getBoard().getBoard();
+                            for (int i = 0; i < 8; i++) {
+                                for (int j = 0; j < 8; j++) {
+                                    if(cells[i][j].getPiece()==null){
+                                        outputStream.writeInt(0);
+                                    }
+                                    else if(cells[i][j].getPiece() instanceof Pawn){
+                                        if(cells[i][j].getPiece().getColor()== Color.White) {
+                                            outputStream.writeInt(1);
+                                        }
+                                        else{
+                                            outputStream.writeInt(2);
+                                        }
+                                    }
+                                    else if(cells[i][j].getPiece() instanceof Bishop){
+                                        if(cells[i][j].getPiece().getColor()== Color.White) {
+                                            outputStream.writeInt(3);
+                                        }
+                                        else{
+                                            outputStream.writeInt(4);
+                                        }
+                                    }
+                                    else if(cells[i][j].getPiece() instanceof Knight){
+                                        if(cells[i][j].getPiece().getColor()== Color.White) {
+                                            outputStream.writeInt(5);
+                                        }
+                                        else{
+                                            outputStream.writeInt(6);
+                                        }
+                                    }
+                                    else if(cells[i][j].getPiece() instanceof Rook){
+                                        if(cells[i][j].getPiece().getColor()== Color.White) {
+                                            outputStream.writeInt(7);
+                                        }
+                                        else{
+                                            outputStream.writeInt(8);
+                                        }
+                                    }
+                                    else if(cells[i][j].getPiece() instanceof King){
+                                        if(cells[i][j].getPiece().getColor()== Color.White) {
+                                            outputStream.writeInt(9);
+                                        }
+                                        else{
+                                            outputStream.writeInt(10);
+                                        }
+                                    }
+                                    else if(cells[i][j].getPiece() instanceof Queen){
+                                        if(cells[i][j].getPiece().getColor()== Color.White) {
+                                            outputStream.writeInt(11);
+                                        }
+                                        else{
+                                            outputStream.writeInt(12);
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

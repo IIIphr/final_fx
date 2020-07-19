@@ -2,8 +2,6 @@ package Server.Model.Game;
 
 import Server.Model.User.User;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 
 

@@ -28,6 +28,8 @@ public class Panel {
     }
 
     public void game(ActionEvent actionEvent) throws IOException {
+        Main.client.game_create();
+        new Page_loader().load("../View/game.fxml");
     }
 
     public void about(ActionEvent actionEvent) throws IOException {
