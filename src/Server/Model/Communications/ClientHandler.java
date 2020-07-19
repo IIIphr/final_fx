@@ -1,7 +1,6 @@
 package Server.Model.Communications;
 
 import Server.Model.DB.DataBase;
-import Server.Model.Game.Game;
 import Server.Model.User.User;
 
 import java.io.DataInputStream;
@@ -11,15 +10,17 @@ import java.net.Socket;
 
 public class ClientHandler implements Runnable {
     private final Socket clientSocket;
+    private Server server;
+    Thread game;
 
-    public ClientHandler(Socket clientSocket) {
+    public ClientHandler(Socket clientSocket,Server server) {
         this.clientSocket = clientSocket;
+        this.server=server;
     }
 
     @Override
     public void run() {
         try {
-            Thread game=new Game();
             boolean in_game=false;
             DataBase database=DataBase.getInstance();
             DataInputStream inputStream=new DataInputStream(clientSocket.getInputStream());
@@ -37,6 +38,7 @@ public class ClientHandler implements Runnable {
                         }
                         else{
                             outputStream.writeUTF("success");
+                            logged_in.clientHandler=this;
                             database.SaveUsers();
                         }
                     }
@@ -44,6 +46,7 @@ public class ClientHandler implements Runnable {
                         if(database.addUser(new User(username,password))){
                             outputStream.writeUTF("success");
                             logged_in=database.login(username,password);
+                            logged_in.clientHandler=this;
                             database.SaveUsers();
                         }
                         else{
@@ -52,24 +55,30 @@ public class ClientHandler implements Runnable {
                     }
                 }
                 else{
-                    while (logged_in!=null){
-                        database.SaveUsers();
-                        String action=inputStream.readUTF();
-                        if(action.equals("cp")){
-                            String pass=inputStream.readUTF();
-                            database.changepass(pass,logged_in);
+                    if(!in_game) {
+                        while (logged_in != null) {
                             database.SaveUsers();
+                            String action = inputStream.readUTF();
+                            if (action.equals("cp")) {
+                                String pass = inputStream.readUTF();
+                                database.changepass(pass, logged_in);
+                                database.SaveUsers();
+                            } else if (action.equals("lo")) {
+                                logged_in.clientHandler = null;
+                                logged_in = null;
+                                break;
+                            } else if (action.equals("up")) {
+                                database.SaveUsers();
+                            } else if (action.equals("game")) {
+                                server.add_gamer(logged_in);
+                                while (!server.create_game(logged_in)) {
+                                }
+                                in_game = true;
+                            }
                         }
-                        else if(action.equals("lo")){
-                            logged_in=null;
-                            break;
-                        }
-                        else if(action.equals("up")){
-                            database.SaveUsers();
-                        }
-                        else if(action.equals("game")){
-                            //init game
-                        }
+                    }
+                    else{
+
                     }
                 }
             }
