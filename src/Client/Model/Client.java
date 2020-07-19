@@ -66,4 +66,16 @@ public class Client {
     public void update() throws IOException {
         outputStream.writeUTF("up");
     }
+
+    public boolean move(int x_start,int y_start,int x_end,int y_end) throws IOException {
+        outputStream.writeInt(x_start);
+        outputStream.writeInt(y_start);
+        outputStream.writeInt(x_end);
+        outputStream.writeInt(y_end);
+        String status=inputStream.readUTF();
+        if(status.equals("no")){
+            return false;
+        }
+        return true;
+    }
 }
