@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.About">
+   <children>
+      <Button fx:id="back" layoutX="132.0" layoutY="394.0" mnemonicParsing="false" onAction="#back" text="back" />
+      <Label fx:id="error" layoutX="144.0" layoutY="358.0" />
+      <Label layoutX="113.0" layoutY="100.0" text="سپهر ابراهیمی" />
+      <Label layoutX="130.0" layoutY="143.0" text="۹۸۲۴۳۰۰۱" />
+      <Label layoutX="119.0" layoutY="181.0" text="بازی شطرنج " />
+      <Label layoutX="30.0" layoutY="225.0" text="تحت شبکه و به همراه برنامه نویسی مالتی ترد" />
+   </children>
+</AnchorPane>

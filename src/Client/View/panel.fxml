@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Panel">
+   <children>
+      <Label layoutX="101.0" layoutY="62.0" text="user managemanet" />
+      <Button fx:id="password_button" layoutX="97.0" layoutY="126.0" mnemonicParsing="false" onAction="#change_password" text="change password" />
+      <TextField fx:id="password_field" layoutX="72.0" layoutY="95.0" promptText="password" />
+      <Button fx:id="game_button" layoutX="112.0" layoutY="217.0" mnemonicParsing="false" onAction="#game" text="enter a game" />
+      <Button fx:id="scoreboard_button" layoutX="111.0" layoutY="265.0" mnemonicParsing="false" onAction="#score_board" text="score boeard" />
+      <Button fx:id="history_button" layoutX="132.0" layoutY="316.0" mnemonicParsing="false" onAction="#history" text="history" />
+      <Button fx:id="about_button" layoutX="137.0" layoutY="370.0" mnemonicParsing="false" onAction="#about" text="about" />
+      <Button fx:id="logout_button" layoutX="133.0" layoutY="471.0" mnemonicParsing="false" onAction="#logout" text="logout" />
+      <Label fx:id="password_label" layoutX="149.0" layoutY="157.0" />
+      <Button fx:id="update_button" layoutX="99.0" layoutY="421.0" mnemonicParsing="false" onAction="#update" text="update database" />
+   </children>
+</AnchorPane>

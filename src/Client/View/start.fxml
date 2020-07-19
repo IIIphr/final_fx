@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Start">
+   <children>
+      <TextField fx:id="ip_field" layoutX="72.0" layoutY="238.0" promptText="ip" text="localhost" />
+      <TextField fx:id="port_field" layoutX="72.0" layoutY="301.0" promptText="port" text="8080" />
+      <Label layoutX="66.0" layoutY="149.0" text="please provide the ip and port" />
+      <Button fx:id="submit" layoutX="132.0" layoutY="394.0" mnemonicParsing="false" onAction="#submit" text="submit" />
+      <Label fx:id="error" layoutX="144.0" layoutY="358.0" />
+   </children>
+</AnchorPane>
